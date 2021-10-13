@@ -64,3 +64,18 @@ class GrepBackend(BaseBackend, QuoteCharMixin):
     def generateNULLValueNode(self, node):
         key, value = node
         return "(?!%s)" % key
+
+
+class PyRegex(GrepBackend):
+    """Generates Python code for Perl compatible regular expressions"""
+    identifier = "pyregex"
+    active = True
+    config_required = False
+    pattern_number = 0
+
+    reEscape = re.compile("([\\\\|()\[\]{}.^$+])")
+
+    def generateQuery(self, parsed):
+        s = "pattern%s = re.compile(r'%s')" % (self.pattern_number, self.generateNode(parsed.parsedSearch))
+        self.pattern_number += 1
+        return s
