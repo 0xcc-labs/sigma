@@ -13,6 +13,10 @@ logsources:
      product_name: 
        - 'apache*'
        - 'httpd*'
+ webserver:
+   category: webserver
+   conditions:
+     vendor_type: 'Webserver'
  cisco:
    product: cisco
    conditions:
@@ -146,7 +150,7 @@ logsources:
      vendor_id: "11"
  windows-file-event:
    product: windows
-   category: file_create
+   category: file_event
    conditions:
      product_name: "Sysmon"
      vendor_id: "11"
@@ -304,6 +308,12 @@ logsources:
    conditions:
      product_name:
        - 'AppLocker'
+ windows-ps-module:
+   product: windows
+   category: ps_module
+   conditions:
+     product_name: 'PowerShell'
+     vendor_id: 4103
  windows-service-bus:
    service: Microsoft-ServiceBus-Client
    conditions:
@@ -444,3 +454,6 @@ fieldmappings:
   event_type_id: vendor_id
   eventtype: vendor_type
   destination.port: ip_dport
+  user: correlation_username
+  User: correlation_username
+  Provider_Name: channel
