@@ -79,7 +79,7 @@ class MultiRuleOutputMixin:
             yaml_title = "No Title"
         yaml_title = yaml_title.replace(" ", "-").replace("(", "").replace(")", "")
         
-        rulename = "%s-%s" % (yaml_id, yaml_title)
+        rulename = "%s-%s" % (yaml_title, yaml_id)
         if rulename in self.rulenames:   # add counter if name collides
             cnt = 2
             while "%s-%d" % (rulename, cnt) in self.rulenames:
