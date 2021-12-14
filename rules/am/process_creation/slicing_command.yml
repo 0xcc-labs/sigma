@@ -1,0 +1,21 @@
+title: AM Slicing Software Command
+status: experimental
+description: Identify process creation related to AM slicing software
+author: BreakPoint Labs
+date: 2021/12/07
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    slicing_cmd:
+        CommandLine|contains: 
+            - 'CuraEngine'
+            - 'FlashPrint'
+            - 'Simplify3D'
+    condition: slicing_cmd
+falsepositives:
+    - authorized users
+level: low
+tags:
+    - attack.execution
+    - attack.t0823
